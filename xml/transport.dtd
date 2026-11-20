@@ -1,0 +1,26 @@
+<!-- =============================================================================
+     SCSMS Campus Transport – Document Type Definition (DTD)
+     Describes the legal structure of transport.xml for well-formedness checks.
+     ============================================================================= -->
+
+<!-- Root: one transport element containing any number of trip elements -->
+<!ELEMENT transport (trip*)>
+<!-- Optional schema hints (ignored by database export if omitted) -->
+<!ATTLIST transport
+    xmlns:xsi CDATA #IMPLIED
+    xsi:noNamespaceSchemaLocation CDATA #IMPLIED>
+
+<!-- Each trip must contain these child elements in order -->
+<!ELEMENT trip (route, driver, schedule, capacity, availableSeats, status)>
+
+<!ELEMENT route (#PCDATA)>
+<!ELEMENT driver (#PCDATA)>
+
+<!-- Schedule groups departure and arrival times -->
+<!ELEMENT schedule (departure, arrival)>
+<!ELEMENT departure (#PCDATA)>
+<!ELEMENT arrival (#PCDATA)>
+
+<!ELEMENT capacity (#PCDATA)>
+<!ELEMENT availableSeats (#PCDATA)>
+<!ELEMENT status (#PCDATA)>

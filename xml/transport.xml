@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transport SYSTEM "transport.dtd">
+<transport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="transport.xsd">
+    <trip>
+        <route>Gate 1 to Main Campus</route>
+        <driver>Juan Dela Cruz</driver>
+        <schedule>
+            <departure>07:00</departure>
+            <arrival>07:30</arrival>
+        </schedule>
+        <capacity>30</capacity>
+        <availableSeats>12</availableSeats>
+        <status>Available</status>
+    </trip>
+    <trip>
+        <route>Main Campus to Library</route>
+        <driver>Maria Santos</driver>
+        <schedule>
+            <departure>07:45</departure>
+            <arrival>08:00</arrival>
+        </schedule>
+        <capacity>25</capacity>
+        <availableSeats>25</availableSeats>
+        <status>Full</status>
+    </trip>
+    <trip>
+        <route>Dormitory to Science Building</route>
+        <driver>Pedro Reyes</driver>
+        <schedule>
+            <departure>08:15</departure>
+            <arrival>08:35</arrival>
+        </schedule>
+        <capacity>40</capacity>
+        <availableSeats>18</availableSeats>
+        <status>Available</status>
+    </trip>
+    <trip>
+        <route>Gate 2 to Sports Complex</route>
+        <driver>Ana Garcia</driver>
+        <schedule>
+            <departure>09:00</departure>
+            <arrival>09:20</arrival>
+        </schedule>
+        <capacity>20</capacity>
+        <availableSeats>5</availableSeats>
+        <status>Available</status>
+    </trip>
+    <trip>
+        <route>Library to Cafeteria</route>
+        <driver>Juan Dela Cruz</driver>
+        <schedule>
+            <departure>10:00</departure>
+            <arrival>10:15</arrival>
+        </schedule>
+        <capacity>30</capacity>
+        <availableSeats>0</availableSeats>
+        <status>Full</status>
+    </trip>
+    <trip>
+        <route>Main Campus to Gate 1</route>
+        <driver>Luis Ramos</driver>
+        <schedule>
+            <departure>11:30</departure>
+            <arrival>12:00</arrival>
+        </schedule>
+        <capacity>30</capacity>
+        <availableSeats>22</availableSeats>
+        <status>Available</status>
+    </trip>
+    <trip>
+        <route>Science Building to Dormitory</route>
+        <driver>Maria Santos</driver>
+        <schedule>
+            <departure>12:15</departure>
+            <arrival>12:40</arrival>
+        </schedule>
+        <capacity>40</capacity>
+        <availableSeats>30</availableSeats>
+        <status>Available</status>
+    </trip>
+    <trip>
+        <route>Sports Complex to Main Campus</route>
+        <driver>Carlos Mendoza</driver>
+        <schedule>
+            <departure>14:00</departure>
+            <arrival>14:25</arrival>
+        </schedule>
+        <capacity>22</capacity>
+        <availableSeats>22</availableSeats>
+        <status>Full</status>
+    </trip>
+    <trip>
+        <route>Gate 1 to Engineering Hall</route>
+        <driver>Elena Torres</driver>
+        <schedule>
+            <departure>15:00</departure>
+            <arrival>15:20</arrival>
+        </schedule>
+        <capacity>28</capacity>
+        <availableSeats>14</availableSeats>
+        <status>Available</status>
+    </trip>
+    <trip>
+        <route>Engineering Hall to Gate 2</route>
+        <driver>Pedro Reyes</driver>
+        <schedule>
+            <departure>16:00</departure>
+            <arrival>16:25</arrival>
+        </schedule>
+        <capacity>28</capacity>
+        <availableSeats>20</availableSeats>
+        <status>Available</status>
+    </trip>
+    <trip>
+        <route>Cafeteria to Library</route>
+        <driver>Ana Garcia</driver>
+        <schedule>
+            <departure>17:00</departure>
+            <arrival>17:12</arrival>
+        </schedule>
+        <capacity>25</capacity>
+        <availableSeats>8</availableSeats>
+        <status>Available</status>
+    </trip>
+    <trip>
+        <route>Campus Loop Shuttle</route>
+        <driver>Maintenance Team</driver>
+        <schedule>
+            <departure>08:00</departure>
+            <arrival>18:00</arrival>
+        </schedule>
+        <capacity>50</capacity>
+        <availableSeats>50</availableSeats>
+        <status>Maintenance</status>
+    </trip>
+</transport>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SCSMS – Campus Transport XML Schema (XSD)
+  Uses XSD 1.1 xs:assert for schedule/time consistency and seat vs capacity rules.
+  Note: Some PHP/libxml builds only fully support XSD 1.0; assertions may be skipped
+  by the engine. Academic tools (XMLSpy, oXygen) validate XSD 1.1 completely.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           version="1.1">
+
+  <!-- Status: only these three literal values are allowed -->
+  <xs:simpleType name="ShuttleStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Available"/>
+      <xs:enumeration value="Full"/>
+      <xs:enumeration value="Maintenance"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Time string: 24-hour HH:MM using pattern restriction -->
+  <xs:simpleType name="TimeHhMmType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([01][0-9]|2[0-3]):[0-5][0-9]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Capacity must be a positive integer (> 0) -->
+  <xs:simpleType name="PositiveCapacityType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:minInclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Non-negative seat count -->
+  <xs:simpleType name="NonNegativeSeatsType">
+    <xs:restriction base="xs:nonNegativeInteger"/>
+  </xs:simpleType>
+
+  <!-- Schedule: departure/arrival must match time pattern (restriction) -->
+  <xs:complexType name="ScheduleType">
+    <xs:sequence>
+      <xs:element name="departure" type="TimeHhMmType"/>
+      <xs:element name="arrival" type="TimeHhMmType"/>
+    </xs:sequence>
+    <!-- XSD 1.1 assert: both times must be syntactically valid 24h HH:MM (belt + suspenders with simpleType) -->
+    <xs:assert test="matches(departure, '^([01][0-9]|2[0-3]):[0-5][0-9]$')
+                     and matches(arrival, '^([01][0-9]|2[0-3]):[0-5][0-9]$')"/>
+    <!-- Logical validity: arrival must not be before departure (same-day campus shuttle) -->
+    <xs:assert test="departure le arrival"/>
+  </xs:complexType>
+
+  <!-- One trip: asserts tie capacity and available seats together -->
+  <xs:complexType name="TripType">
+    <xs:sequence>
+      <xs:element name="route" type="xs:string"/>
+      <xs:element name="driver" type="xs:string"/>
+      <xs:element name="schedule" type="ScheduleType"/>
+      <xs:element name="capacity" type="PositiveCapacityType"/>
+      <xs:element name="availableSeats" type="NonNegativeSeatsType"/>
+      <xs:element name="status" type="ShuttleStatusType"/>
+    </xs:sequence>
+    <!-- availableSeats cannot exceed capacity -->
+    <xs:assert test="xs:integer(availableSeats) le xs:integer(capacity)"/>
+  </xs:complexType>
+
+  <xs:element name="transport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="trip" type="TripType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
